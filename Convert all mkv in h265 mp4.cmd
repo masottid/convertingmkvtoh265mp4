@@ -10,7 +10,7 @@ color 0F
 echo ----------------------------------
 echo Do you want to install chocolatey and ffmpeg ?
 echo 1. Install
-echo 2. Convert
+echo 2. Convert with NVIDIA NVENC
 echo 3. Convert with automatic hw acceleration
 echo ----------------------------------
 set /p a=
@@ -22,7 +22,7 @@ choco install ffmpeg -y)
 
 ::Convert options in ffmpeg
 
-IF %a%==2 (for %%a in ("*.mkv") do ffmpeg -hwaccel auto -i "%%a" -c:v hevc-nvenc -preset fast -b:v 1100K -c:a copy "%%a".mp4)
+IF %a%==2 (for %%a in ("*.mkv") do ffmpeg -hwaccel auto -i "%%a" -c:v hevc_nvenc -preset fast -b:v 1100K -c:a copy "%%a".mp4)
 
 IF %a%==3 (for %%a in ("*.mkv") do ffmpeg -hwaccel auto -i "%%a" -c:v libx265 -preset fast -b:v 1100K -c:a copy "%%a".mp4)
 
